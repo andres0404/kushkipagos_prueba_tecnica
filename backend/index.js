@@ -1,9 +1,10 @@
- const express = require('express');
- const app = express();
- const multer = require('multer');
- const path = require('path');
- app.use(express.json()); // poder leer json en el body
- const analisis = require('./src/get_analisis');
+const express = require('express');
+const app = express();
+const multer = require('multer');
+const path = require('path');
+app.use(express.json()); // poder leer json en el body
+const analisis = require('./src/get_analisis');
+const fs = require('fs');
 
 app.get('/analisis/:filename', (req, res) => {
    
@@ -54,6 +55,16 @@ app.post('/upload', (req, res) => {
             size: req.file
         });
     });
-})
+});
+
+app.get('/file/:filename', (req, res) => {
+    const filePath = path.join(__dirname, "img", req.params.filename);
+    // validar existencia del archivo
+    if (!fs.existsSync(filePath)) {
+        return res.status(404).json({error: "Archivo no disponible"});
+    }
+    // envia archivo
+    res.sendFile(filePath);
+});
 
 app.listen(3000, () => console.log("API en http://localhost:3000"));
