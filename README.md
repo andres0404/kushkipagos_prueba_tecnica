@@ -73,7 +73,3 @@ Archivos útiles en el repositorio
 - [.example.env](.example.env)
 - [.env](.env)
 
-Contacto rápido
-- Código backend principal: [backend/index.js](backend/index.js)
-- Lógica de análisis: [`get_analisis`](backend/src/get_analisis.js)
-- Componente de subida: [frontend/src/UploadImg.jsx](frontend/src/UploadImg.jsx)
