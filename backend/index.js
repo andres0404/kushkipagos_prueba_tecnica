@@ -2,7 +2,9 @@ const express = require('express');
 const app = express();
 const multer = require('multer');
 const path = require('path');
+const cors = require('cors');
 app.use(express.json()); // poder leer json en el body
+app.use(cors());
 const analisis = require('./src/get_analisis');
 const fs = require('fs');
 
@@ -33,7 +35,7 @@ const subir = multer({
     fileFilter: (req, file, cb) => {
         const permitidos = ["image/png","image/jpg", "image/jpeg","image/gif", "image/webp"];
         if(!permitidos.includes(file.mimetype)) {
-            return cb(new Error("Tipo de archivo no permitido"));
+            return cb("Tipo de archivo no permitido", false);
         }
         cb(null, true);
     }
@@ -44,15 +46,15 @@ app.post('/upload', (req, res) => {
             // error por los criterios establecidos
             return res.status(400).json({error: `Error al subir archivo: ${err.messaje}`});
         } else if (err){ // error general
-            return res.status(500).json({error: err.messaje});
+            return res.status(500).json({error: err});
         }
         if(!req.file) {
             return res.status(400).json({error: "No se envió archivo"});
         }
         res.status(201).json({
             messaje: "Archivo subido correctamente",
-            filename: req.file.originalname,
-            size: req.file
+            filename: req.file.filename,
+            size: req.file.size
         });
     });
 });

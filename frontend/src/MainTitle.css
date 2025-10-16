@@ -1,0 +1,12 @@
+.cubo {
+    width: 64px;
+    height: 64px;
+    border-radius: 12px;
+    background: var(--simpson-blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--simpson-yellow);
+    font-weight: 700;
+    font-size: 22px;
+}
