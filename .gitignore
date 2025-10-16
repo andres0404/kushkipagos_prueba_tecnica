@@ -26,4 +26,4 @@ frontend/*.sw?
 # back directorios
 backend/node_modules
 .env
-backend/img
+backend/img/*
