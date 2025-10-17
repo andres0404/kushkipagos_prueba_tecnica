@@ -32,7 +32,7 @@ function Preview({ filename }) {
 
           <h6>Tags descriptivos</h6>
           <div id="tagsArea" className="mb-3">
-            <div class="d-flex justify-content-center">
+            <div className="d-flex justify-content-center">
                 <div className="spinner-border text-danger" role="status" style={{display: spinner ? "inline-flex": "none"}}>
                     <span className="visually-hidden">Loading...</span>
                 </div>
